@@ -1,0 +1,19 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "A project to explore the use of API",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "API",
+    "Practice",
+    "project",
+    "The",
+    "odin",
+    "project"
+  ],
+  "author": "Gaston Vecchio",
+  "license": "ISC"
+}

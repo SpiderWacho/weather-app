@@ -1,0 +1,64 @@
+h1 {
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+.rowIcon {
+    width: 100vw;
+    min-height: 200px;
+    height: 30%;
+    background-color: rgba(255, 255, 255, 0.315);
+}
+
+body {
+    background-size: cover;
+}
+
+.dayDiv {
+    max-width: 300px;
+    min-width: 200px;
+    height: 100%;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 60% 1fr;
+    grid-template-areas: 'description'
+                            'img'
+                            'data';
+    justify-items: center;
+    border: 1px solid grey;
+    box-shadow: 0px 1px 5px .3px grey ;
+}
+
+.climate-day-text {
+    grid-area: data;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+
+}
+
+.climate-logo {
+    grid-area: img;
+    height: 150px;
+    width: 150px;
+}
+
+#search {
+    position: relative;
+    top: 50%;
+    left: 40%;
+    width: 30%;
+    max-width: 500px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px white solid;
+    color: white;
+}
+
+#searchBtn {
+    position: relative;
+    left: 40%;
+    width: 100px;
+    height: 30px;
+}
