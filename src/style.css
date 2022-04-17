@@ -1,64 +1,202 @@
-h1 {
-    text-align: center;
-    color: rgb(255, 255, 255);
+
+@import url('https://fonts.googleapis.com/css2?family=Akshar:wght@300&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.rowIcon {
-    width: 100vw;
-    min-height: 200px;
-    height: 30%;
-    background-color: rgba(255, 255, 255, 0.315);
-}
+
 
 body {
     background-size: cover;
+    font-family: 'Akshar', sans-serif;
 }
 
-.dayDiv {
-    max-width: 300px;
-    min-width: 200px;
+.logoContainer {
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo   {
+    height: calc(37px);
+    width: calc(200px);
+    object-fit: contain;
+}
+
+.loading{
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    height: 3rem;
+    width: 3rem;
+    border: 50px solid #2c2c2c1e;
+    border-top: 50px solid #c7c7c7b0;
+    border-radius: 100%;
+    margin: auto;
+    display: none;
+    animation: spin 1s infinite linear;
+}
+
+.loading.display{
+    display: block;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+    
+}
+
+.dataRow {
+    margin-top: 2%;
+    width: 100vw;
+    height: 350px;
+    min-height: 30%;
+    background-color: rgba(255, 255, 255, 0.315);
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+}
+
+.container-main {
+    display: grid;
+    grid-template-columns: 1fr 40% 1fr;
+    grid-template-rows: 0.5fr 2fr 1fr;
+    grid-template-areas: ". temp ."
+                         ". img ."
+                        "minmax . sun";
+    justify-items: center;
+    align-items:flex-end;
     height: 100%;
+    width: 50%;
+}
+
+.feelsLike {
+    grid-area: img;
+    align-self: flex-end;
+    font-size: 2em;
+}
+
+.main-climate-day-text-date {
+    grid-area: temp;    
+    align-self: flex-end;
+    font-size: 1.7em;
+}
+
+.main-weather {
+    grid-area: img;
+    align-self: flex-end;
+    margin-bottom: 2em;
+    font-size: 1.5em;
+}
+.main-climate-logo {
+    grid-area: img;
+    align-self: flex-start;
+    object-fit: contain;
+    height: 150px;  
+    width: 150px;
+}
+
+.main-climate-day-text-tempMin {
+    grid-area: minmax;
+    align-self: center;
+    font-size: 1.5em;
+}
+
+.main-climate-day-text-tempMax {
+    grid-area: minmax;
+    align-self: flex-end;
+    font-size: 1.5em;
+}
+
+.sunset {
+    grid-area: sun;
+    align-self: flex-end;
+    font-size: 1.5em;
+}
+.sunrise {
+    grid-area: sun;
+    align-self: center;
+    font-size: 1.5em;
+}
+
+.container-daily {
+    width: 50%;
+    height: 100%;
+}
+
+
+.dayDiv {
+    width: 100%;
+    height: calc(100% / 7);
+    
     padding: 5px;
     display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 1fr 60% 1fr;
-    grid-template-areas: 'description'
-                            'img'
-                            'data';
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:    'date img weather max min ';
     justify-items: center;
+    align-items: center;
     border: 1px solid grey;
     box-shadow: 0px 1px 5px .3px grey ;
 }
 
-.climate-day-text {
-    grid-area: data;
-    color: white;
-    font-size: 1.5em;
-    font-weight: bold;
-
+.climate-day-text-date {
+    grid-area: date;
 }
 
 .climate-logo {
     grid-area: img;
-    height: 150px;
-    width: 150px;
+    object-fit:contain;
+    height: 25px;
+    width: 25px;
+}
+
+.weather {
+    grid-area: weather;
+}
+
+.climate-day-text-tempMax {
+    grid-area: max;
+} 
+
+.climate-day-text-tempMin {
+    grid-area: min;
+} 
+
+
+
+.searchDiv {
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #search {
-    position: relative;
-    top: 50%;
-    left: 40%;
     width: 30%;
     max-width: 500px;
     background-color: transparent;
     border: none;
     border-bottom: 2px white solid;
     color: white;
+    text-align: center;
+    font-size: 1.2em;
 }
 
+#search:focus {
+    outline: 0;
+}
+
+
 #searchBtn {
-    position: relative;
-    left: 40%;
     width: 100px;
     height: 30px;
+    margin-left: 5%;
 }
