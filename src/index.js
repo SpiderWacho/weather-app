@@ -12,21 +12,14 @@ import es from 'date-fns/locale/es'
 
 
 async function getWeather(input) {
+    try {
     let rawLocation = '';
-    try {      
-        if (input !== undefined && typeof input != 'number') {
-            try {
-                rawLocation = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=5&appid=f9a4a03a77656330115b00b33d0c13c2&units=metric`, {mode: 'cors'});
-            }
-            catch {
-                let newError = document.createElement('p');
-                newError.classList.add('error');
-                newError.textContent = "Location not correct";
-            }
-        }
-        else {
-            rawLocation = await fetch('http://api.openweathermap.org/geo/1.0/direct?q=Buenos+Aires&limit=5&appid=f9a4a03a77656330115b00b33d0c13c2&units=metric', {mode: 'cors'});
-        }
+    if (input != undefined) {      
+        rawLocation = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=5&appid=f9a4a03a77656330115b00b33d0c13c2&units=metric`, {mode: 'cors'});
+    }
+    else {
+        rawLocation = await fetch('http://api.openweathermap.org/geo/1.0/direct?q=Buenos+Aires&limit=5&appid=f9a4a03a77656330115b00b33d0c13c2&units=metric', {mode: 'cors'});
+    }
         let location = await rawLocation.json();
         let lat = location[0].lat;
         let lon = location[0].lon;
@@ -35,9 +28,11 @@ async function getWeather(input) {
         if (document.querySelector('.error') != undefined) {
             document.querySelector('.error').style.display = 'none';
         }
+        console.log(data);
         return data;
     }
     catch(error) {
+        manipulateDom.displayError(error);        
         throw new Error(error);
     }
 }
@@ -112,13 +107,13 @@ const manipulateDom = (() => {
         
         //Determine img according to weather
         const climateIcon = new Image();
-        if (data.current.weather[0].id > 200 && data.current.weather[0].id < 300) {
+        if (data.current.weather[0].id >= 200 && data.current.weather[0].id < 300) {
             climateIcon.src = thunder;
         }
-        else if (data.current.weather[0].id > 500 && data.current.weather[0].id < 600) {
+        else if (data.current.weather[0].id >= 500 && data.current.weather[0].id < 600) {
             climateIcon.src = rain;
         }
-        else if (data.current.weather[0].id > 600 && data.current.weather[0].id < 700) {
+        else if (data.current.weather[0].id >= 600 && data.current.weather[0].id < 700) {
             climateIcon.src = snow;
         }
         else if (data.current.weather[0].id === 800) {
@@ -128,6 +123,7 @@ const manipulateDom = (() => {
             climateIcon.src = cloud;
         }
         climateIcon.classList.add('main-climate-logo');
+
 
         let weather = document.createElement('p');
         weather.classList.add('main-weather');
@@ -176,10 +172,10 @@ const manipulateDom = (() => {
             if (data[i].weather[0].id > 200 && data[i].weather[0].id < 300) {
                 climateIcon.src = thunder;
             }
-            else if (data[i].weather[0].id > 500 && data[i].weather[0].id < 600) {
+            else if (data[i].weather[0].id >= 500 && data[i].weather[0].id < 600) {
                 climateIcon.src = rain;
             }
-            else if (data[i].weather[0].id > 600 && data[i].weather[0].id < 700) {
+            else if (data[i].weather[0].id >= 600 && data[i].weather[0].id < 700) {
                 climateIcon.src = snow;
             }
             else if (data[i].weather[0].id === 800) {
@@ -206,8 +202,16 @@ const manipulateDom = (() => {
         containerMain.textContent = '';
     }
 
+    function displayError(msg) {
+        const container = document.querySelector('.container-main');
+        let newError = document.createElement('p');
+        newError.classList.add('error');
+        newError.textContent = "Location not correct";
+        container.append(newError);
+    }
     
-    return {createNewDiv, createMainTemp, displayBackground, cleanData};
+    
+    return {createNewDiv, createMainTemp, displayBackground, cleanData, displayError};
 })();
 
 manipulateDom.displayBackground();
@@ -220,18 +224,21 @@ function searchCity() {
 
 }
 
+
+function displayLoading() {
+    const loader = document.querySelector('.lds-roller');
+    loader.style.display = 'block'; 
+}
+
 function populatePage(input){
-    const loader = document.querySelector('.loading');
-    function displayLoading() {
-        loader.classList.add('display'); 
-    }
+    
     displayLoading();
     getWeather(input)
     .then((data) => {manipulateDom.createNewDiv(data.daily)
                             return data})
     .then((data) => manipulateDom.createMainTemp(data))
-    .catch(error => {throw new Error(error)})
-    .finally(() => {loader.classList.remove("display")});
+    .finally(() => { const loader = document.querySelector('.lds-roller');
+        loader.style.display = "none"});
 }
 
 let searchBtn = document.querySelector('#searchBtn');

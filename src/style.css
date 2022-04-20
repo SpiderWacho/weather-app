@@ -26,44 +26,19 @@ body {
     object-fit: contain;
 }
 
-.loading{
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    height: 3rem;
-    width: 3rem;
-    border: 50px solid #2c2c2c1e;
-    border-top: 50px solid #c7c7c7b0;
-    border-radius: 100%;
-    margin: auto;
-    display: none;
-    animation: spin 1s infinite linear;
-}
-
-.loading.display{
-    display: block;
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-    
-}
 
 .dataRow {
+    backdrop-filter: saturate(180%) blur(10px);
     margin-top: 2%;
     width: 100vw;
     height: 350px;
     min-height: 30%;
-    background-color: rgba(255, 255, 255, 0.315);
+    background-color: rgba(134, 134, 134, 0.541);
     display: flex;
     flex-direction: row-reverse;
     flex-wrap: nowrap;
-}
+}   
+
 
 .container-main {
     display: grid;
@@ -82,6 +57,8 @@ body {
     grid-area: img;
     align-self: flex-end;
     font-size: 2em;
+    position: relative;
+    top: 15%;
 }
 
 .main-climate-day-text-date {
@@ -93,8 +70,10 @@ body {
 .main-weather {
     grid-area: img;
     align-self: flex-end;
-    margin-bottom: 2em;
+    position: relative;
+    bottom: 5%;
     font-size: 1.5em;
+    z-index: 1;
 }
 .main-climate-logo {
     grid-area: img;
@@ -106,7 +85,7 @@ body {
 
 .main-climate-day-text-tempMin {
     grid-area: minmax;
-    align-self: center;
+    align-self: center; 
     font-size: 1.5em;
 }
 
@@ -140,7 +119,7 @@ body {
     padding: 5px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas:    'date img weather max min ';
+    grid-template-areas:    'date img weather min max ';
     justify-items: center;
     align-items: center;
     border: 1px solid grey;
@@ -198,5 +177,110 @@ body {
 #searchBtn {
     width: 100px;
     height: 30px;
-    margin-left: 5%;
+    margin-left: 1%;
+    background-color: rgba(173, 173, 173, 0.582);
+    box-shadow: 0px 0px 3px .1px white;
+    border: none;
 }
+
+#searchBtn:hover {
+    background-color: rgba(173, 173, 173, 0.897);
+}
+
+
+.error {
+    font-size: 2em;
+    color: grey;
+    position: relative;
+    left: 8em; 
+    top: 4em;
+}
+
+
+.lds-roller {
+    display: inline-block;
+    position: relative;
+    top: 35%;
+    right: 50%;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 40px 40px;
+  }
+  .lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgb(177, 177, 177);
+    margin: -4px 0 0 -4px;
+  }
+  .lds-roller div:nth-child(1) {
+    animation-delay: -0.036s;
+  }
+  .lds-roller div:nth-child(1):after {
+    top: 63px;
+    left: 63px;
+  }
+  .lds-roller div:nth-child(2) {
+    animation-delay: -0.072s;
+  }
+  .lds-roller div:nth-child(2):after {
+    top: 68px;
+    left: 56px;
+  }
+  .lds-roller div:nth-child(3) {
+    animation-delay: -0.108s;
+  }
+  .lds-roller div:nth-child(3):after {
+    top: 71px;
+    left: 48px;
+  }
+  .lds-roller div:nth-child(4) {
+    animation-delay: -0.144s;
+  }
+  .lds-roller div:nth-child(4):after {
+    top: 72px;
+    left: 40px;
+  }
+  .lds-roller div:nth-child(5) {
+    animation-delay: -0.18s;
+  }
+  .lds-roller div:nth-child(5):after {
+    top: 71px;
+    left: 32px;
+  }
+  .lds-roller div:nth-child(6) {
+    animation-delay: -0.216s;
+  }
+  .lds-roller div:nth-child(6):after {
+    top: 68px;
+    left: 24px;
+  }
+  .lds-roller div:nth-child(7) {
+    animation-delay: -0.252s;
+  }
+  .lds-roller div:nth-child(7):after {
+    top: 63px;
+    left: 17px;
+  }
+  .lds-roller div:nth-child(8) {
+    animation-delay: -0.288s;
+  }
+  .lds-roller div:nth-child(8):after {
+    top: 56px;
+    left: 12px;
+  }
+  @keyframes lds-roller {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
