@@ -44,7 +44,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 40% 1fr;
     grid-template-rows: 0.5fr 2fr 1fr;
-    grid-template-areas: ". temp ."
+    grid-template-areas: ". temp location"
                          ". img ."
                         "minmax . sun";
     justify-items: center;
@@ -61,10 +61,19 @@ body {
     top: 15%;
 }
 
+
 .main-climate-day-text-date {
     grid-area: temp;    
     align-self: flex-end;
     font-size: 1.7em;
+}
+
+.location {
+  grid-area: location;
+  align-self: center;
+  font-size: 1.2em;
+  color: black;
+  font-weight: bolder;
 }
 
 .main-weather {

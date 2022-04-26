@@ -1,9 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: {
+    index: './src/index.js',
+    manipulateDom: './src/manipulateDom.js',
+    getData: './src/getData.js',
+},
   devtool: 'inline-source-map',
   devServer: {
     static: './dist',
@@ -16,8 +21,9 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     clean: true,
+    publicPath: "/weather-app/",
   },
   module: {
     rules: [
