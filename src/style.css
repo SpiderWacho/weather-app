@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Akshar:wght@300&display=swap');
+
 
 * {
     box-sizing: border-box;
@@ -8,10 +8,16 @@
 }
 
 
+@font-face {
+  font-family: 'Akshar';
+  src: url('./Akshar-VariableFont_wght.ttf') format('truetype');
+  font-weight: lighter;
+  font-style: normal;
+}
 
 body {
     background-size: cover;
-    font-family: 'Akshar', sans-serif;
+    font-family: 'Akshar',  serif;
 }
 
 .logoContainer {
@@ -73,7 +79,7 @@ body {
   align-self: center;
   font-size: 1.2em;
   color: black;
-  font-weight: bolder;
+  font-weight: normal;
 }
 
 .main-weather {

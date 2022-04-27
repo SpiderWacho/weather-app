@@ -1,8 +1,9 @@
 import './style.css';
-import {createNewDiv, createMainTemp, displayBackground, cleanData, displayError, addLocation, displayLoading} from './manipulateDom'
-import { getLocation, getWeather} from './getData';
+import {createNewDiv, createMainTemp, displayBackground, cleanData, displayError, addLocation, displayLoading, addLogo} from './manipulateDom'
+import {getWeather} from './getData';
 
 
+addLogo();
 
 function populatePage(input){
     displayLoading();

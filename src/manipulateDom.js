@@ -25,11 +25,15 @@ function displayLoading() {
 
 const dataRow = document.querySelector('.dataRow');
 
-const logoContainer = document.querySelector('.logoContainer');
-const logo = new Image();
-logo.classList.add('logo');
-logo.src = logoText;
-logoContainer.append(logo);
+function addLogo() {
+    const logoContainer = document.querySelector('.logoContainer');
+    const logo = new Image();
+    logo.classList.add('logo');
+    logo.src = logoText;
+    logoContainer.append(logo);
+    console.log('working');
+}
+
 
 function displayBackground() {
     const dateObj = new Date();
@@ -190,4 +194,4 @@ function addLocation(location) {
     container.append(newP)
 }
     
-export {createNewDiv, createMainTemp, displayBackground, cleanData, displayError, addLocation, displayLoading};
+export {createNewDiv, createMainTemp, displayBackground, cleanData, displayError, addLocation, displayLoading, addLogo};
