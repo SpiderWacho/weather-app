@@ -36,4 +36,4 @@ async function getWeather(input) {
     }
 }
 
-export {getLocation, getWeather}
+export {getWeather}

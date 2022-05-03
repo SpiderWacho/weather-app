@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --progress --mode=production",
     "watch": "webpack --progress --watch",
-    "serve": "webpack-dev-server --open", 
+    "serve": "webpack-dev-server --open",
     "deploy": "gh-pages -d dist"
   },
   "keywords": [
@@ -27,9 +27,10 @@
     "style-loader": "^3.3.1",
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.8.1"
+    "webpack-dev-server": "^4.0.0-rc.1"
   },
   "dependencies": {
+    "aos": "^3.0.0-beta.6",
     "gh-pages": "^3.2.3"
   }
 }

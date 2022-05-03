@@ -128,9 +128,24 @@ function createNewDiv(data) {
         
         let newDiv = document.createElement('div');
         newDiv.classList.add('dayDiv');
+        if (i % 2 === 0) {
+            newDiv.dataset.aos = 'fade-right';
+        }
+        else {
+            newDiv.dataset.aos = 'fade-left';
+        }
+        
+        newDiv.setAttribute('data-aos-offset', '-700');
+        newDiv.setAttribute('data-aos-duration', '650');
+        newDiv.setAttribute('data-aos-mirror', 'true');
+        newDiv.setAttribute('data-aos-easing', 'ease-in-out');
+    
+        
+        
+
         
         let tempMax = document.createElement('p');
-        tempMax.classList.add('climate-day-text-temp');
+        tempMax.classList.add('climate-day-text-tempMax');
         tempMax.textContent = `Max: ${Math.round(data[i].temp.max)}°`;
         let tempMin = document.createElement('p');
         tempMin.classList.add('climate-day-text-tempMin');
@@ -179,11 +194,12 @@ function cleanData() {
 }
 
 function displayError(msg) {
-    const container = document.querySelector('.container-main');
+    const dataRow = document.querySelector('.dataRow');
     let newError = document.createElement('p');
     newError.classList.add('error');
-    newError.textContent = "Location not correct";
-    container.append(newError);
+    newError.textContent = "Location not found";
+    dataRow.append(newError);
+    //containerDaily.append(newError);
 }
 
 function addLocation(location) { 
@@ -193,5 +209,20 @@ function addLocation(location) {
     const container = document.querySelector('.container-main')
     container.append(newP)
 }
+
+function hideLoading() {
+    const loader = document.querySelector('.lds-roller');
+    const loadingDiv = document.querySelector('.loading');
+    loader.style.display = "none"
+    loadingDiv.style.display = 'none';
+}
+
+
+  
+
+
+
+
+
     
-export {createNewDiv, createMainTemp, displayBackground, cleanData, displayError, addLocation, displayLoading, addLogo};
+export {createNewDiv, createMainTemp, displayBackground, cleanData, displayError, addLocation, displayLoading, addLogo, hideLoading}
